@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" style="font-family: Aldrich, sans-serif;" class="bg">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AngularApp</title>
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
+<link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+
+
+<body>
+    <div ng-app="myApp" ng-controller='mainController' style="font-family: Aldrich, sans-serif;">
+
+        <div class="global-wrapper" ng-app="myApp"></div>
+
+        <!-- Heading -->
+
+        <section id="heading">
+            <div class="header-class">
+                <h1 style="color: var(--bs-white);font-family: Aldrich, sans-serif;">Contacts list</h1>
+            </div>
+        </section>
+
+    
+
+        <section id="contacts">
+                <div class="border rounded-0 contacts-global">
+                    <div id="search-input">
+                        <input id="search" type="text" ng-model="test" placeholder="Search">
+                    </div>
+
+                    <div class="tabela-main"><i class="far fa-user ikonica"></i>
+                        <div class="table-responsive">
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Ime</th>
+                                        <th>Prezime</th>
+                                        <th>Telefon</th>
+                                        <th>Email</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="body">
+                                    <tr ng-repeat="x in names | filter: test">
+                                        <td>{{x.ime}}</td>
+                                        <td>{{x.prezime}}</td>
+                                        <td>{{x.telefon}}</td>
+                                        <td>{{x.email}}</td>
+                                        <td><button class="btn btn-primary btn-main" id="btn-edit" type="button" data-toggle="modal"
+                                            ng-click="izmenaKontakt(x); IzmenaForma()"><i class="fas fa-edit"></i></button></td>
+                                        <td><button class="btn btn-primary btn-main" id="btn-edit" type="button" ng-click="obrisiKontakt(x)"><i class="fas fa-trash"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <button class="btn btn-primary btn-main btn-big" id="btn-edit" type="button" data-toggle="modal"
+                            ng-click="DodajForma()"><i
+                                    class="fas fa-user-plus"></i></button>
+
+                            
+
+                            <div class="container input1" ng-show="izmena">
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Ime</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="Ime" ng-model="kopija.ime">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Prezime</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="Prezime"
+                                            ng-model="kopija.prezime">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Telefon</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="Telefon"
+                                            ng-model="kopija.telefon">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Email</label>
+                                    <form ng-app="myApp" name="myForm">
+                                        <div class="col-sm-10">
+
+                                            <input type="email" class="form-control email" name="myAddresss"
+                                                placeholder="Email" ng-model="kopija.email">
+                                            <span ng-show="myForm.myAddresss.$error.email"
+                                                style="color: rgb(219, 88, 88);">E-mail adresa nije validna.</span>
+
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-sm-12">
+
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                                        ng-click="izmenaSnimi()"><i class="fas fa-check ikonica"></i></button>
+
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                                        ng-click="zatvoriIzmenu()"><i class="fas fa-times ikonica"></i></button>
+                                </div>
+
+                            </div>
+
+                            
+
+                            <div class="container input1" ng-show="prikaz">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Ime</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="Ime"
+                                            ng-model="newContact.ime">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Prezime</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="Prezime"
+                                            ng-model="newContact.prezime">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Telefon</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="Broj telefona"
+                                            ng-model="newContact.telefon">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Email</label>
+                                    <form ng-app="myApp" name="myForm">
+                                        <div class="col-sm-10">
+
+
+                                            <input type="email" class="form-control" name="myAddress"
+                                                placeholder="Email" ng-model="newContact.email">
+                                            <span ng-show="myForm.myAddress.$error.email" style="color: rgb(219, 88, 88)">E-mail adresa nije validna.</span>
+
+
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <button type="button" class="btn btn-default"
+                                        ng-click="saveContact()"><i class="fas fa-check ikonica"></i></button>
+                                    <button type="button" class="btn btn-default"
+                                        ng-click="zatvori()"><i class="fas fa-times ikonica"></i></button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        
+
+                        <script>
+                            var myApp = angular.module("myApp", []);
+
+                            myApp.controller("mainController", function ($scope) {
+                                $scope.newContact = {};
+                                $scope.dataMock = ""; 
+                                $scope.prikaz = false;
+                                $scope.izmena = false;
+
+                                $scope.DodajForma = function () {
+                                    $scope.prikaz = !$scope.prikaz;
+                                }
+
+                                $scope.IzmenaForma = function () {
+                                    $scope.izmena = !$scope.izmena;
+                                }
+                                $scope.names = [
+                                    { ime: 'Marija', prezime: 'Marinovic', telefon: '063475444', email: 'mary@gmail.com' },
+                                    { ime: 'Cana', prezime: 'Dokmanovic', telefon: '022354333', email: 'cana123@gmail.com' },
+                                    { ime: 'Uros', prezime: 'Panic', telefon: '0642422222', email: 'uros@gmail.com' },
+                                    { ime: 'Una', prezime: 'Kostov', telefon: '018588592', email: 'una@gmail.com' },
+                                    { ime: 'Milica', prezime: 'Panic', telefon: '018588533', email: 'mpanic@gmail.com' },
+                                    { ime: 'Tara', prezime: 'Tairovic', telefon: '018222322', email: 'ttairovic@gmail.com' },
+                                    { ime: 'Sandra', prezime: 'Sandrovic', telefon: '065542344', email: 'ssandrovic@gmail.com' },
+                                    { ime: 'Jovana', prezime: 'Aradinovic', telefon: '066323555', email: 'jovana12@yahoo.com' }
+                                ];
+
+                                $scope.saveContact = function () {
+
+                                    $scope.names.push($scope.newContact);
+                                    $scope.newContact = {};
+                                    $scope.prikaz = !$scope.prikaz;
+                                };
+                                $scope.zatvori = function () {
+                                    $scope.newContact = {};
+                                    $scope.prikaz = !$scope.prikaz;
+                                }
+                                $scope.zatvoriIzmenu = function () {
+                                    $scope.izmena = !$scope.izmena;
+                                }
+                                $scope.izmenaKontakt = function (x) {
+                                    $scope.curr = x; 
+                                    $scope.kopija = angular.copy(x);
+
+                                }
+                                $scope.izmenaSnimi = function () {
+                                    $scope.names[$scope.names.indexOf($scope.curr)] = $scope.kopija;
+                                    $scope.izmena = !$scope.izmena;
+                                }
+
+                                $scope.obrisiKontakt = function (x) {
+                                    $scope.curr = x;
+                                    $scope.names.splice($scope.names.indexOf($scope.curr), 1);
+                                    $scope.info = "Kontakt obrisan.";
+                                };
+
+                                $scope.clearInfo = function () {
+                                    $scope.info = "";
+                                };
+                            });
+                        </script>
+                    </div>
+        </section>
+
+        
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+.tabela-main {
+  color: rgb(255,255,255)!important;
+  background-color: rgba(199, 199, 199, 0.76);
+  width: 800px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 20px;
+  box-shadow: 15px 15px 15px rgba(0,0,0,0.42);
+  margin: 1.5rem auto 1.5rem auto;
+  padding: 0.5rem;
+}
+
+.bg{
+  height: 100%;
+  background-color:#121328
+}
+
+.input1{
+  margin-top: 2rem;
+  border: solid rgba(255, 255, 255, 0.459);
+  padding:0.2rem;
+  width: 500px;
+}
+
+.table{
+  color: white;
+}
+
+#search{
+  border-radius: 20px;
+}
+
+#contacts {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.header-class {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.body {
+  color: white;
+}
+
+.about-div {
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-main {
+  height: 20px;
+  background-color: rgba(255,255,255,0);
+  font-size: 20px;
+  border-radius: 100px;
+  border-style: none;
+
+}
+
+.btn-big{
+  margin-bottom: 1.2rem;
+}
+
+.contacts-global {
+  width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-color: rgba(219, 219, 219, 0.76);
+  border-radius: 20px!important;
+}
+
+.ikonica {
+  font-size: 30px;
+  color: white;
+}
+
+.dodaj-new {
+  width: 64px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.5rem;
+}
+
+#button-add {
+  background-color: #6689cc;
+}
+
+#btn-edit {
+  height: auto;
+  border-radius: 200px;
+}
+
+#search-input {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5rem;
+}
+
+.linkovi {
+  height: auto;
+  width: auto;
+  background-color: rgba(255,255,255,0);
+  font-size: 50px;
+  color: white;
+}
+
+.linkovi:hover {
+  color: rgb(120,131,234);
+}
+
+body {
+	background: linear-gradient(-45deg, #290a09, #6b201d, #04021a, #0446cc);
+	background-size: 600% 600%;
+	animation: gradient 35s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
